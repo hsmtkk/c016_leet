@@ -15,6 +15,8 @@ steps:
       - export CGO_ENABLED=0
       - go build -o leet
   - name: run
+    depends_on:
+      - build
     image: alpine:3.11.6
     commands:
       - cd cmd/leet
