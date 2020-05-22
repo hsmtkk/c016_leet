@@ -1,0 +1,21 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: golang:1.14
+    commands:
+      - cd pgk/leet
+      - go test
+  - name: build
+    image: golang:1.14
+    commands:
+      - cd cmd/leet
+      - export CGO_ENABLED=0
+      - go build -o leet
+  - name: run
+    image: alpine:3.11.6
+    commands:
+      - cd cmd/leet
+      - ./leet APPLE
